@@ -5,7 +5,8 @@
     "dev": "next -p 3009",
     "build": "next build",
     "start": "next start -p 3009",
-    "lint": "standard"
+    "lint": "standard",
+    "test-dev": "cypress open"
   },
   "repository": {
     "type": "git",
@@ -24,6 +25,7 @@
     "react-dom": "^16.13.1"
   },
   "devDependencies": {
+    "cypress": "^6.3.0",
     "standard": "^14.3.4"
   }
 }

@@ -1,7 +1,9 @@
 import Theme from '../../components/Theme'
 import ms from 'ms'
 
+
 export default function Post ({ post }) {
+  console.log('post', post)
   return (
     <Theme>
       <div className='post'>
@@ -27,6 +29,10 @@ export async function getStaticPaths () {
 }
 
 export async function getStaticProps ({ params }) {
+  const fs = require('fs')
+
+  const content = fs.readFileSync('./data/' + params.slug + '.md', 'utf8')
+
   const [year, month, day, ...rest] = params.slug.split('-')
   const createdAt = (new Date(`${year} ${month} ${day}`)).getTime()
   const title = rest.join(' ')
@@ -36,7 +42,7 @@ export async function getStaticProps ({ params }) {
       post: {
         slug: params.slug,
         title,
-        content: `This is the content for ${title}`,
+        content,
         createdAt
       }
     }
